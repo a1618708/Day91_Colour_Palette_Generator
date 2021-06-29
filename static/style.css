@@ -1,0 +1,97 @@
+/*Font*/
+body {
+font-family: 'Work Sans';
+font-weight:300;
+position:relative;
+min-height:100vh;
+padding-top:2%;
+padding-bottom:120px;
+box-sizing:border-box;
+text-align:center;
+position:relative;
+}
+
+h1{
+text-align:left;
+padding-left:2rem;
+}
+
+
+/*Form*/
+form {
+margin: 5% 0 5% 2rem;
+text-align:left;
+font-size:1rem;
+font-weight:400;
+}
+
+.form-group {
+padding: 0.5rem 0;
+}
+
+#submit {
+width:30%;
+}
+
+.help-block{
+color:red;
+font-size: 1rem;
+font-weight:400;
+}
+
+
+input, .form-control{
+border: 1px solid #128945;
+width: 100%;
+padding: .375rem .75rem;
+font-size: 1rem;
+font-weight:400;
+line-height:1.5;
+color: #212529;
+border-radius:0.25rem;
+transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+
+/*Show Image*/
+
+img {
+width:100%;
+padding:2.4rem 0;
+margin: 0 1 0 8%;
+}
+
+
+/*Footers*/
+
+#footer{
+position:absolute;
+bottom:0;
+text-align:center;
+font-family:'Work Sans';
+font-weight:500;
+font-size:1.2rem;
+width:100%;
+}
+
+#footer p{
+padding: 1% 0 ;
+}
+
+#footer p::after{
+content: " — "
+}
+
+.footer-img{
+width:3rem;
+font-size:1.5rem;
+border-color: transparent;
+padding:0 0;
+}
+
+.footer-img:hover{
+border-color: transparent;
+background-color:white;
+color:black!important;
+opacity: 0.5;
+}
