@@ -63,7 +63,6 @@ def upload_file():
 
             colors = colorgram.extract(img, main_color)
             color_rank_list = [[(color.rgb[0], color.rgb[1], color.rgb[2]), float("{:.2f}".format(color.proportion*100))] for color in colors]
-            return url_for("send_file",filename=filename)
             return render_template("index.html", Is_IMG=True, file=os.path.join(filepath) ,form=form, ranking=color_rank_list)
 
         else:
@@ -71,13 +70,6 @@ def upload_file():
             return redirect(url_for("upload_file"))
 
     return render_template("index.html", Is_IMG=False, form=form)
-
-@app.route('/tmp')
-def send_file(filename):
-    return send_from_directory('tmp', filename)
-
-
-
 
 
 if __name__ == "__main__":
