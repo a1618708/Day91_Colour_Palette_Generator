@@ -7,7 +7,6 @@ import os
 import numpy as np
 from PIL import Image
 import colorgram
-os.getcwd()
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
@@ -64,7 +63,7 @@ def upload_file():
             colors = colorgram.extract(img, main_color)
             color_rank_list = [[(color.rgb[0], color.rgb[1], color.rgb[2]), float("{:.2f}".format(color.proportion*100))] for color in colors]
 
-            return render_template("index.html", Is_IMG=True, file=os.path.join(filepath),form=form, ranking=color_rank_list)
+            return render_template("index.html", Is_IMG=True, file=os.path.join(os.getcwd(),"tmp",filename) ,form=form, ranking=color_rank_list)
 
         else:
             flash("Please upload an image file")
