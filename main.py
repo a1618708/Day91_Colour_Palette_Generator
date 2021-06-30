@@ -32,7 +32,11 @@ def upload_file():
         file = form.FileName.data
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            filepath = os.path.join(app.config['UPLOAD_FOLDER']+"/"+filename)
+            #filepath = os.path.join(app.config['UPLOAD_FOLDER']+"/"+filename)
+            filepath_tmp = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tmp")
+            if not os.path.exists(filepath_tmp):
+                os.mkdir(filepath_tmp)
+            filepath = os.path.join(filepath_tmp,filename)
             file.save(filepath)
 
             # img = Image.open(filepath)
