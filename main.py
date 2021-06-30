@@ -72,7 +72,7 @@ def upload_file():
 
     return render_template("index.html", Is_IMG=False, form=form)
 
-@app.route('/tmp/<path:filename>')
+@app.route('/tmp')
 def send_file(filename):
     return send_from_directory('tmp', filename)
 
