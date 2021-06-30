@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, flash, redirect, url_for, send_from_directory
+from flask import Flask, request, render_template, flash, redirect, url_for
 from werkzeug.utils import secure_filename
 from flask_bootstrap import Bootstrap
 from forms import Form
@@ -61,10 +61,10 @@ def upload_file():
                 flash("Please enter an integer")
                 return redirect(url_for("upload_file"))
 
-            # colors = colorgram.extract(img, main_color)
-            # color_rank_list = [[(color.rgb[0], color.rgb[1], color.rgb[2]), float("{:.2f}".format(color.proportion*100))] for color in colors]
-
-            return redirect(url_for("show",filename=filename, img=img, main_color=main_color))
+            colors = colorgram.extract(img, main_color)
+            color_rank_list = [[(color.rgb[0], color.rgb[1], color.rgb[2]), float("{:.2f}".format(color.proportion*100))] for color in colors]
+            return url_for("send_file",filename=filename)
+            return render_template("index.html", Is_IMG=True, file=os.path.join(filepath) ,form=form, ranking=color_rank_list)
 
         else:
             flash("Please upload an image file")
@@ -73,13 +73,10 @@ def upload_file():
     return render_template("index.html", Is_IMG=False, form=form)
 
 @app.route('/tmp/<path:filename>')
-def show(filename,img,main_color):
-    form = Form()
-    colors = colorgram.extract(img, main_color)
-    color_rank_list = [[(color.rgb[0], color.rgb[1], color.rgb[2]), float("{:.2f}".format(color.proportion * 100))] for
-                       color in colors]
+def send_file(filename):
+    return send_from_directory('tmp', filename)
 
-    render_template("index.html", Is_IMG=True, file=send_from_directory('tmp', filename) , form=form, ranking=color_rank_list)
+
 
 
 
