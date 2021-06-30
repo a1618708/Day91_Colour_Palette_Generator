@@ -7,7 +7,7 @@ import os
 import numpy as np
 from PIL import Image
 import colorgram
-
+os.getcwd()
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
@@ -36,7 +36,7 @@ def upload_file():
             filepath_tmp = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tmp")
             if not os.path.exists(filepath_tmp):
                 os.mkdir(filepath_tmp)
-            filepath = os.path.join(filepath_tmp,filename)
+            filepath = os.path.join(filepath_tmp, filename)
             file.save(filepath)
 
             # img = Image.open(filepath)
