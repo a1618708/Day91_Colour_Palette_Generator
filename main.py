@@ -61,10 +61,10 @@ def upload_file():
                 flash("Please enter an integer")
                 return redirect(url_for("upload_file"))
 
-            colors = colorgram.extract(img, main_color)
-            color_rank_list = [[(color.rgb[0], color.rgb[1], color.rgb[2]), float("{:.2f}".format(color.proportion*100))] for color in colors]
+            # colors = colorgram.extract(img, main_color)
+            # color_rank_list = [[(color.rgb[0], color.rgb[1], color.rgb[2]), float("{:.2f}".format(color.proportion*100))] for color in colors]
 
-            return redirect(url_for("show",filename=filename, ranking=color_rank_list))
+            return redirect(url_for("show",filename=filename, img=img, main_color=main_color))
 
         else:
             flash("Please upload an image file")
@@ -73,9 +73,13 @@ def upload_file():
     return render_template("index.html", Is_IMG=False, form=form)
 
 @app.route('/tmp/<path:filename>')
-def show(filename,ranking):
+def show(filename,img,main_color):
     form = Form()
-    render_template("index.html", Is_IMG=True, file=send_from_directory('tmp', filename) ,form=form, ranking=ranking)
+    colors = colorgram.extract(img, main_color)
+    color_rank_list = [[(color.rgb[0], color.rgb[1], color.rgb[2]), float("{:.2f}".format(color.proportion * 100))] for
+                       color in colors]
+
+    render_template("index.html", Is_IMG=True, file=send_from_directory('tmp', filename) , form=form, ranking=color_rank_list)
 
 
 
